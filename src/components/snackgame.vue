@@ -4,43 +4,22 @@
       <div class="food" :style="`left: ${food.x}px; top:${food.y}px`"></div>
       <div
         class="snake_head"
-        :style="`left: ${snake.x}px; top:${snake.y}px`"
-        @keyup.enter="food.beEated"
+        :style="`left: ${snake._x}px; top:${snake._y}px`"
       ></div>
     </div>
     <div class="under_text">
-      <h3>SCORE: 3</h3>
-      <h3>SCORE: 3</h3>
-      <h3>LEVEL: 3</h3>
+      <h3>SCORE: {{ gamecontrol.score }}</h3>
+      <h3>LEVEL: {{ snake.level }}</h3>
     </div>
-  </div>
 
-  {{ food.x }}
-  {{ food.y }}
+    <button @click="gamecontrol.start">start</button>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { snake } from "../utils/snake";
-import { food } from "../utils/food";
-
-window.onkeydown = function (e: KeyboardEvent): void {
-  switch (e.key) {
-    case "ArrowUp":
-      snake.up();
-      break;
-    case "ArrowDown":
-      snake.down();
-      break;
-    case "ArrowRight":
-      snake.right();
-      break;
-    case "ArrowLeft":
-      snake.left();
-      break;
-    default:
-      break;
-  }
-};
+import snake from "../utils/snake";
+import food from "../utils/food";
+import gamecontrol from "../utils/gamecontrol";
 </script>
 
 <style lang="scss" scoped>

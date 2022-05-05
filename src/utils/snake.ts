@@ -1,37 +1,29 @@
 import { reactive } from "vue";
-import Snake from "../interfaces/snake";
+import gamecontrol from "./gamecontrol";
 
-export const snake: Snake = reactive({
-  length: 10,
-  x: 20,
-  y: 20,
-  up() {
-    if (this.y >= 20) {
-      this.y -= 20;
-    } else {
-      alert("boom");
+interface Snake {
+  level: number;
+  _x: number;
+  _y: number;
+  setX(x: number): void;
+  setY(Y: number): void;
+}
+
+const snake: Snake = reactive({
+  level: Math.round(gamecontrol.score / 3) || 1,
+  _x: 0,
+  _y: 0,
+
+  setX(x) {
+    if (0 <= x && x <= 480) {
+      this._x = x;
     }
   },
-  down() {
-    if (this.y <= 460) {
-      this.y += 20;
-    } else {
-      alert("boom");
+  setY(y) {
+    if (0 <= y && y <= 480) {
+      this._y = y;
     }
   },
-  left() {
-    if (this.x >= 20) {
-      this.x -= 20;
-    } else {
-      alert("boom");
-    }
-  },
-  right() {
-    if (this.x <= 460) {
-      this.x += 20;
-    } else {
-      alert("boom");
-    }
-  },
-  eat() {},
 });
+
+export default snake;
