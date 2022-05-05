@@ -10,6 +10,7 @@
     </div>
     <div class="under_text">
       <h3>SCORE: 3</h3>
+      <h3>SCORE: 3</h3>
       <h3>LEVEL: 3</h3>
     </div>
   </div>
