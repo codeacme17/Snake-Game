@@ -12,7 +12,20 @@
       <h3>LEVEL: {{ snake.level }}</h3>
     </div>
 
-    <button @click="gamecontrol.start">start</button>
+    <button
+      @click="gamecontrol.start"
+      v-show="!gamecontrol.isMoving"
+      style="height: 30px; width: 80px; cursor: pointer"
+    >
+      START
+    </button>
+    <button
+      @click="gamecontrol.restart"
+      v-show="gamecontrol.isDead"
+      style="height: 30px; width: 80px; cursor: pointer"
+    >
+      RESTART
+    </button>
   </div>
 </template>
 

@@ -5,8 +5,10 @@ import snake from "../utils/snake";
 interface GameControl {
   key: string;
   score: number;
+  isMoving: boolean;
+  isDead: boolean;
   start(): void;
-  pause(): void;
+  pause?(): void;
   restart(): void;
   keydownHandler(): void;
   move(): void;
@@ -16,6 +18,9 @@ interface GameControl {
 const gamecontrol: GameControl = reactive({
   key: "ArrowRight",
   score: 0,
+  isMoving: false as boolean,
+  isDead: false as boolean,
+
   start() {
     this.move();
     this.keydownHandler();
@@ -25,9 +30,12 @@ const gamecontrol: GameControl = reactive({
     snake.setX(0);
     snake.setY(0);
     food.create();
+    this.key = "ArrowRight";
+    this.score = 0;
+    snake.setLevel(1);
+    this.isDead = false;
+    this.start();
   },
-
-  pause() {},
 
   keydownHandler() {
     const that = this;
@@ -37,6 +45,8 @@ const gamecontrol: GameControl = reactive({
   },
 
   move() {
+    if (this.isDead) return;
+    this.isMoving = true;
     let X: number = snake._x;
     let Y: number = snake._y;
     switch (this.key) {
@@ -64,6 +74,7 @@ const gamecontrol: GameControl = reactive({
   checkEat(X, Y) {
     if (X === food.x && Y === food.y) {
       this.score++;
+      snake.setLevel(Math.floor(this.score / 3) + 1);
       food.create();
     }
   },
