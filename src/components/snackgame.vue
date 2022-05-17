@@ -2,11 +2,15 @@
   <div class="container">
     <div class="game_box">
       <div class="food" :style="`left: ${food.x}px; top:${food.y}px`"></div>
-      <div
-        class="snake_head"
-        :style="`left: ${snake._x}px; top:${snake._y}px`"
-      ></div>
+      <div id="snake">
+        <div
+          id="snake_head"
+          class="snake_body"
+          :style="`left: ${snake._x}px; top:${snake._y}px`"
+        ></div>
+      </div>
     </div>
+
     <div class="under_text">
       <h3>SCORE: {{ gamecontrol.score }}</h3>
       <h3>LEVEL: {{ snake.level }}</h3>
@@ -19,6 +23,7 @@
     >
       START
     </button>
+
     <button
       @click="gamecontrol.restart"
       v-show="gamecontrol.isDead"

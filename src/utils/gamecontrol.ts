@@ -27,14 +27,7 @@ const gamecontrol: GameControl = reactive({
   },
 
   restart() {
-    snake.setX(0);
-    snake.setY(0);
-    food.create();
-    this.key = "ArrowRight";
-    this.score = 0;
-    snake.setLevel(1);
-    this.isDead = false;
-    this.start();
+    location.reload();
   },
 
   keydownHandler() {
@@ -75,6 +68,7 @@ const gamecontrol: GameControl = reactive({
     if (X === food.x && Y === food.y) {
       this.score++;
       snake.setLevel(Math.floor(this.score / 3) + 1);
+      snake.addBody();
       food.create();
     }
   },

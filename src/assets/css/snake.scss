@@ -25,17 +25,13 @@
   border: 1px solid $base_color;
 }
 
-.snake_head {
+#snake {
+  position: relative;
+}
+
+#snake_head {
   position: absolute;
   width: 20px;
   height: 20px;
   background-color: $base_color;
-
-  div {
-    width: 20px;
-    height: 20px;
-    background-color: $base_color;
-    position: absolute;
-    left: 20px;
-  }
 }
